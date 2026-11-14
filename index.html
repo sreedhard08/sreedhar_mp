@@ -1,0 +1,1075 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EduSphere | Online Course Registration</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    scroll-behavior: smooth;
+}
+
+:root {
+    --primary: #00d9ff;
+    --secondary: #087eaa;
+    --dark: #06172e;
+    --light: #eaf7ff;
+}
+
+body {
+    background: #06172e;
+    color: white;
+    overflow-x: hidden;
+}
+
+/* ANIMATED BACKGROUND */
+
+.background {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.glow {
+    position: absolute;
+    width: 350px;
+    height: 350px;
+    border-radius: 50%;
+    filter: blur(110px);
+    opacity: .3;
+    animation: moveGlow 9s infinite alternate ease-in-out;
+}
+
+.glow.one {
+    background: #00d9ff;
+    top: 5%;
+    left: 5%;
+}
+
+.glow.two {
+    background: #753bff;
+    bottom: 5%;
+    right: 5%;
+    animation-delay: 2s;
+}
+
+@keyframes moveGlow {
+    from { transform: translate(0,0) scale(1); }
+    to { transform: translate(100px,80px) scale(1.3); }
+}
+
+/* NAVIGATION */
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 8%;
+    background: rgba(4,20,43,.8);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255,255,255,.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 25px;
+    font-weight: 800;
+    color: white;
+}
+
+.logo span {
+    color: var(--primary);
+}
+
+.nav-links {
+    display: flex;
+    gap: 30px;
+    list-style: none;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #d5eaff;
+    font-size: 14px;
+    transition: .3s;
+}
+
+.nav-links a:hover {
+    color: var(--primary);
+}
+
+.nav-btn {
+    background: linear-gradient(120deg,#087eaa,#00d9ff);
+    color: white;
+    border: none;
+    padding: 11px 22px;
+    border-radius: 30px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: .4s;
+}
+
+.nav-btn:hover {
+    transform: translateY(-5px) scale(1.07);
+    box-shadow: 0 10px 30px #00d9ff66;
+}
+
+/* HERO SECTION */
+
+.hero {
+    min-height: 520px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 80px 10%;
+    gap: 40px;
+}
+
+.hero-content {
+    max-width: 600px;
+    animation: slideLeft 1s ease;
+}
+
+@keyframes slideLeft {
+    from { opacity: 0; transform: translateX(-80px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+.hero-content h1 {
+    font-size: clamp(35px,5vw,60px);
+    line-height: 1.2;
+    font-weight: 800;
+}
+
+.hero-content h1 span {
+    color: var(--primary);
+    text-shadow: 0 0 25px #00d9ff88;
+}
+
+.hero-content p {
+    margin: 25px 0;
+    color: #b9d2e8;
+    line-height: 1.8;
+    font-size: 15px;
+}
+
+.hero-btn {
+    display: inline-block;
+    text-decoration: none;
+    padding: 15px 30px;
+    border-radius: 10px;
+    color: white;
+    font-weight: 600;
+    background: linear-gradient(120deg,#087eaa,#00d9ff);
+    transition: .4s;
+}
+
+.hero-btn:hover {
+    transform: translateY(-7px) scale(1.05);
+    box-shadow: 0 15px 35px #00d9ff55;
+}
+
+/* 3D HERO CARD */
+
+.hero-card {
+    width: 310px;
+    height: 350px;
+    border-radius: 25px;
+    background: linear-gradient(145deg,#123e68,#09264c);
+    border: 1px solid #00d9ff66;
+    box-shadow: 20px 25px 60px #0008;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: .6s;
+    animation: floating 4s infinite ease-in-out;
+    transform-style: preserve-3d;
+}
+
+@keyframes floating {
+    0%,100% { transform: translateY(0) rotateY(-8deg); }
+    50% { transform: translateY(-18px) rotateY(8deg); }
+}
+
+.hero-card:hover {
+    transform: rotateY(15deg) rotateX(10deg) scale(1.08);
+    box-shadow: 0 20px 60px #00d9ff66;
+}
+
+.hero-icon {
+    font-size: 85px;
+    margin-bottom: 20px;
+    filter: drop-shadow(0 0 20px #00d9ff);
+}
+
+.hero-card h2 {
+    color: var(--primary);
+    font-size: 23px;
+}
+
+.hero-card p {
+    color: #c5dff4;
+    margin-top: 12px;
+    font-size: 13px;
+}
+
+/* STATS */
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 20px;
+    padding: 20px 10% 60px;
+}
+
+.stat {
+    text-align: center;
+    padding: 25px;
+    background: #ffffff0c;
+    border: 1px solid #ffffff22;
+    border-radius: 15px;
+    transition: .4s;
+}
+
+.stat:hover {
+    transform: translateY(-10px) rotateX(8deg);
+    border-color: var(--primary);
+    box-shadow: 0 10px 30px #00d9ff22;
+}
+
+.stat h2 {
+    color: var(--primary);
+    font-size: 30px;
+}
+
+.stat p {
+    color: #b9d2e8;
+    font-size: 13px;
+}
+
+/* SECTION TITLE */
+
+.section-title {
+    text-align: center;
+    padding: 55px 15px 35px;
+}
+
+.section-title h2 {
+    font-size: 34px;
+}
+
+.section-title h2 span {
+    color: var(--primary);
+}
+
+.section-title p {
+    color: #b9d2e8;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+/* COURSES */
+
+.courses {
+    padding: 0 8% 70px;
+}
+
+.course-grid {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 25px;
+}
+
+.course-card {
+    padding: 30px 22px;
+    background: linear-gradient(145deg,#102f51,#09213e);
+    border: 1px solid #ffffff22;
+    border-radius: 18px;
+    transition: .5s;
+    transform-style: preserve-3d;
+}
+
+.course-card:hover {
+    transform: perspective(900px) rotateY(8deg) rotateX(5deg) translateY(-12px);
+    border-color: var(--primary);
+    box-shadow: 0 20px 40px #00d9ff22;
+}
+
+.course-icon {
+    font-size: 45px;
+    margin-bottom: 15px;
+}
+
+.course-card h3 {
+    color: var(--primary);
+    margin-bottom: 10px;
+}
+
+.course-card p {
+    color: #b9d2e8;
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+/* REGISTRATION */
+
+.registration {
+    padding: 40px 15px 90px;
+    display: flex;
+    justify-content: center;
+}
+
+.form-container {
+    width: 100%;
+    max-width: 850px;
+    padding: 40px;
+    background: rgba(255,255,255,.96);
+    color: #123e68;
+    border-radius: 22px;
+    box-shadow: 0 25px 70px #0008;
+    transition: .5s;
+    transform-style: preserve-3d;
+    animation: formAppear 1s ease;
+}
+
+@keyframes formAppear {
+    from { opacity: 0; transform: translateY(60px) rotateX(10deg); }
+    to { opacity: 1; transform: translateY(0) rotateX(0); }
+}
+
+.form-container:hover {
+    box-shadow: 0 25px 70px #00d9ff33;
+}
+
+.form-container h2 {
+    text-align: center;
+    color: #07527c;
+    font-size: 30px;
+}
+
+.form-container .subtitle {
+    text-align: center;
+    color: #678;
+    margin: 10px 0 30px;
+    font-size: 13px;
+}
+
+.form-section {
+    color: #087eaa;
+    margin: 25px 0 18px;
+    border-bottom: 2px solid #dceaf3;
+    padding-bottom: 10px;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 13px;
+    border: 1px solid #ccdbe8;
+    border-radius: 9px;
+    outline: none;
+    font-size: 13px;
+    transition: .3s;
+    background: #f8fbff;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: #00a9db;
+    box-shadow: 0 0 15px #00d9ff44;
+    transform: translateY(-3px);
+}
+
+.form-group textarea {
+    min-height: 90px;
+    resize: vertical;
+}
+
+.full {
+    grid-column: 1/-1;
+}
+
+.terms {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 25px 0;
+    font-size: 12px;
+}
+
+.terms input {
+    width: 17px;
+    height: 17px;
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 16px;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(120deg,#07527c,#00b8df);
+    color: white;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: .4s;
+}
+
+.submit-btn:hover {
+    transform: translateY(-6px) scale(1.02);
+    box-shadow: 0 15px 30px #00b8df66;
+}
+
+/* FOOTER */
+
+footer {
+    background: #031126;
+    padding: 30px;
+    text-align: center;
+    color: #9bb7cf;
+    font-size: 13px;
+}
+
+/* CHATBOT */
+
+.chatbot {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    z-index: 9999;
+}
+
+.chat-toggle {
+    width: 65px;
+    height: 65px;
+    border: none;
+    border-radius: 50%;
+    color: white;
+    font-size: 28px;
+    background: linear-gradient(135deg,#00d9ff,#07527c);
+    cursor: pointer;
+    box-shadow: 0 0 25px #00d9ff88;
+    animation: float 3s infinite ease-in-out;
+}
+
+@keyframes float {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.chat-window {
+    display: none;
+    position: absolute;
+    bottom: 80px;
+    right: 0;
+    width: 340px;
+    height: 450px;
+    border-radius: 18px;
+    overflow: hidden;
+    background: white;
+    box-shadow: 0 20px 50px #0008;
+    transform-origin: bottom right;
+}
+
+.chat-window.active {
+    display: flex;
+    flex-direction: column;
+    animation: chatOpen .4s ease;
+}
+
+@keyframes chatOpen {
+    from { transform: scale(.5) rotateY(30deg); opacity: 0; }
+    to { transform: scale(1) rotateY(0); opacity: 1; }
+}
+
+.chat-header {
+    background: linear-gradient(120deg,#09264c,#087eaa);
+    color: white;
+    padding: 17px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.chat-header button {
+    background: transparent;
+    color: white;
+    border: none;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+.chat-body {
+    flex: 1;
+    padding: 15px;
+    overflow-y: auto;
+    background: #f3f8fc;
+    color: #123e68;
+}
+
+.bot-message,
+.user-message {
+    padding: 11px;
+    margin-bottom: 12px;
+    max-width: 85%;
+    border-radius: 12px;
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.bot-message {
+    background: #dceefa;
+}
+
+.user-message {
+    background: #087eaa;
+    color: white;
+    margin-left: auto;
+}
+
+.quick-questions {
+    padding: 9px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.quick-questions button {
+    padding: 7px 10px;
+    background: #e2f3fa;
+    color: #07527c;
+    border: none;
+    border-radius: 20px;
+    font-size: 10px;
+    cursor: pointer;
+}
+
+.chat-input {
+    display: flex;
+    gap: 8px;
+    padding: 12px;
+    border-top: 1px solid #ddd;
+}
+
+.chat-input input {
+    flex: 1;
+    min-width: 0;
+    padding: 10px;
+    border: 1px solid #ccdbe8;
+    border-radius: 8px;
+}
+
+.chat-input button {
+    width: 45px;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    background: #087eaa;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:850px) {
+    .hero {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .course-grid {
+        grid-template-columns: repeat(2,1fr);
+    }
+
+    .hero-card {
+        width: 270px;
+    }
+}
+
+@media(max-width:600px) {
+    nav {
+        padding: 15px 5%;
+    }
+
+    .nav-links {
+        display: none;
+    }
+
+    .hero {
+        padding: 60px 6%;
+    }
+
+    .hero-content h1 {
+        font-size: 37px;
+    }
+
+    .stats {
+        grid-template-columns: 1fr;
+        padding: 20px 8% 50px;
+    }
+
+    .course-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .form-container {
+        padding: 23px;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .full {
+        grid-column: auto;
+    }
+
+    .chat-window {
+        width: min(340px, calc(100vw - 30px));
+        right: -10px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="background">
+    <div class="glow one"></div>
+    <div class="glow two"></div>
+</div>
+
+<!-- NAVIGATION -->
+
+<nav>
+    <div class="logo">Edu<span>Sphere.</span></div>
+
+    <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#courses">Courses</a></li>
+        <li><a href="#registration">Registration</a></li>
+    </ul>
+
+    <button class="nav-btn"
+    onclick="document.getElementById('registration').scrollIntoView({behavior:'smooth'})">
+        Register Now
+    </button>
+</nav>
+
+<!-- HERO -->
+
+<section class="hero" id="home">
+
+    <div class="hero-content">
+        <h1>Learn Today.<br>
+        <span>Lead Tomorrow.</span></h1>
+
+        <p>
+        Upgrade your skills with professional online courses.
+        Explore new technologies, learn from structured programs
+        and build your future with confidence.
+        </p>
+
+        <a href="#registration" class="hero-btn">
+            Explore Registration →
+        </a>
+    </div>
+
+    <div class="hero-card">
+        <div class="hero-icon">🎓</div>
+        <h2>EDUSPHERE</h2>
+        <p>Smart Learning. Bright Future.</p>
+    </div>
+
+</section>
+
+<!-- STATISTICS -->
+
+<section class="stats">
+
+    <div class="stat">
+        <h2>7+</h2>
+        <p>Professional Courses</p>
+    </div>
+
+    <div class="stat">
+        <h2>3</h2>
+        <p>Learning Modes</p>
+    </div>
+
+    <div class="stat">
+        <h2>100%</h2>
+        <p>Flexible Learning</p>
+    </div>
+
+</section>
+
+<!-- COURSES -->
+
+<section id="courses">
+
+    <div class="section-title">
+        <h2>Explore Our <span>Courses</span></h2>
+        <p>Choose the right course to develop your skills.</p>
+    </div>
+
+    <div class="courses">
+
+        <div class="course-grid">
+
+            <div class="course-card">
+                <div class="course-icon">💻</div>
+                <h3>Web Development</h3>
+                <p>Learn HTML, CSS, JavaScript and modern website development.</p>
+            </div>
+
+            <div class="course-card">
+                <div class="course-icon">🐍</div>
+                <h3>Python Programming</h3>
+                <p>Learn programming fundamentals and Python applications.</p>
+            </div>
+
+            <div class="course-card">
+                <div class="course-icon">☕</div>
+                <h3>Java Programming</h3>
+                <p>Understand object-oriented programming and Java development.</p>
+            </div>
+
+            <div class="course-card">
+                <div class="course-icon">🤖</div>
+                <h3>Artificial Intelligence</h3>
+                <p>Explore AI concepts and intelligent computer systems.</p>
+            </div>
+
+            <div class="course-card">
+                <div class="course-icon">📊</div>
+                <h3>Data Science</h3>
+                <p>Learn data analysis, visualization and data processing.</p>
+            </div>
+
+            <div class="course-card">
+                <div class="course-icon">🔐</div>
+                <h3>Cyber Security</h3>
+                <p>Understand digital security and safe computing practices.</p>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+<!-- REGISTRATION -->
+
+<section id="registration">
+
+    <div class="section-title">
+        <h2>Course <span>Registration</span></h2>
+        <p>Fill in your details to begin your learning journey.</p>
+    </div>
+
+    <div class="registration">
+
+        <div class="form-container">
+
+            <h2>Student Registration</h2>
+            <p class="subtitle">Complete the form to register for your course</p>
+
+            <form id="registrationForm" onsubmit="registerStudent(event)">
+
+                <h3 class="form-section">01. Personal Information</h3>
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+                        <label>Full Name</label>
+                        <input type="text" placeholder="Enter your name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Email Address</label>
+                        <input type="email" placeholder="Enter your email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Phone Number</label>
+                        <input type="tel" pattern="[0-9]{10}"
+                        placeholder="10-digit number" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Date of Birth</label>
+                        <input type="date" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Gender</label>
+                        <select required>
+                            <option value="">Select Gender</option>
+                            <option>Male</option>
+                            <option>Female</option>
+                            <option>Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Qualification</label>
+                        <select required>
+                            <option value="">Select Qualification</option>
+                            <option>Higher Secondary</option>
+                            <option>Diploma</option>
+                            <option>Undergraduate</option>
+                            <option>Postgraduate</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group full">
+                        <label>Address</label>
+                        <textarea placeholder="Enter your address"></textarea>
+                    </div>
+
+                </div>
+
+                <h3 class="form-section">02. Course Information</h3>
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+                        <label>Select Course</label>
+                        <select required>
+                            <option value="">Choose Course</option>
+                            <option>Web Development</option>
+                            <option>Python Programming</option>
+                            <option>Java Programming</option>
+                            <option>Artificial Intelligence</option>
+                            <option>Data Science</option>
+                            <option>Cyber Security</option>
+                            <option>Machine Learning</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Learning Mode</label>
+                        <select required>
+                            <option value="">Select Mode</option>
+                            <option>Online</option>
+                            <option>Offline</option>
+                            <option>Hybrid</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Course Duration</label>
+                        <select required>
+                            <option value="">Select Duration</option>
+                            <option>1 Month</option>
+                            <option>3 Months</option>
+                            <option>6 Months</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Starting Date</label>
+                        <input type="date" required>
+                    </div>
+
+                    <div class="form-group full">
+                        <label>Learning Goals</label>
+                        <textarea placeholder="Describe your learning goals"></textarea>
+                    </div>
+
+                </div>
+
+                <div class="terms">
+                    <input type="checkbox" required>
+                    <span>I agree to the Terms and Conditions.</span>
+                </div>
+
+                <button class="submit-btn" type="submit">
+                    SUBMIT REGISTRATION →
+                </button>
+
+            </form>
+        </div>
+    </div>
+
+</section>
+
+<!-- FOOTER -->
+
+<footer>
+    <p>© 2026 EduSphere Online Learning Platform.</p>
+    <p>Designed for Excellence | Learn • Grow • Achieve</p>
+</footer>
+
+<!-- CHATBOT -->
+
+<div class="chatbot">
+
+    <div class="chat-window" id="chatWindow">
+
+        <div class="chat-header">
+            <div>
+                <h3>🤖 EduSphere Assistant</h3>
+                <small>Online Course Support</small>
+            </div>
+            <button onclick="toggleChat()">✕</button>
+        </div>
+
+        <div class="chat-body" id="chatBody">
+            <div class="bot-message">
+                Hello! 👋 Welcome to EduSphere.
+                I am your course assistant.
+                Ask me about courses, registration,
+                duration or learning modes!
+            </div>
+        </div>
+
+        <div class="quick-questions">
+            <button onclick="quickAsk('Available courses')">Courses</button>
+            <button onclick="quickAsk('Course duration')">Duration</button>
+            <button onclick="quickAsk('How to register?')">Register</button>
+            <button onclick="quickAsk('Learning modes')">Modes</button>
+            <button onclick="quickAsk('Course fees')">Fees</button>
+        </div>
+
+        <div class="chat-input">
+            <input type="text" id="userInput"
+            placeholder="Type your question..."
+            onkeydown="if(event.key==='Enter') sendMessage()">
+
+            <button onclick="sendMessage()">➤</button>
+        </div>
+
+    </div>
+
+    <button class="chat-toggle" onclick="toggleChat()">💬</button>
+
+</div>
+
+<script>
+
+// REGISTRATION
+
+function registerStudent(event) {
+
+    event.preventDefault();
+
+    alert("🎉 Congratulations! Your registration has been submitted successfully!");
+
+    document.getElementById("registrationForm").reset();
+}
+
+// CHATBOT
+
+function toggleChat() {
+    document.getElementById("chatWindow")
+    .classList.toggle("active");
+}
+
+function addMessage(message, className) {
+
+    const chatBody = document.getElementById("chatBody");
+
+    const msg = document.createElement("div");
+
+    msg.className = className;
+    msg.textContent = message;
+
+    chatBody.appendChild(msg);
+
+    chatBody.scrollTop = chatBody.scrollHeight;
+}
+
+function getBotResponse(message) {
+
+    let msg = message.toLowerCase();
+
+    if (msg.includes("course")) {
+        return "We offer Web Development, Python, Java, Artificial Intelligence, Data Science, Cyber Security and Machine Learning.";
+    }
+
+    else if (msg.includes("duration")) {
+        return "Available course durations are 1 Month, 3 Months and 6 Months.";
+    }
+
+    else if (msg.includes("register")) {
+        return "Go to the Registration section, fill in your personal information, select a course and click Submit Registration.";
+    }
+
+    else if (msg.includes("mode")) {
+        return "We provide Online, Offline and Hybrid learning modes.";
+    }
+
+    else if (msg.includes("fee")) {
+        return "Course fees depend on the selected course and duration. Contact the course administrator for details.";
+    }
+
+    else if (msg.includes("hello") || msg.includes("hi")) {
+        return "Hello! Welcome to EduSphere. How can I help you?";
+    }
+
+    else if (msg.includes("thank")) {
+        return "You're welcome! Happy learning! 😊";
+    }
+
+    else {
+        return "Sorry, I couldn't understand. Please ask about courses, fees, duration, modes or registration.";
+    }
+}
+
+function sendMessage() {
+
+    const input = document.getElementById("userInput");
+
+    const message = input.value.trim();
+
+    if (message === "") return;
+
+    addMessage(message, "user-message");
+
+    const response = getBotResponse(message);
+
+    setTimeout(function() {
+        addMessage(response, "bot-message");
+    }, 400);
+
+    input.value = "";
+}
+
+function quickAsk(question) {
+
+    document.getElementById("userInput").value = question;
+
+    sendMessage();
+}
+
+</script>
+
+</body>
+</html>
